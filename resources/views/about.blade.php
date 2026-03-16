@@ -14,63 +14,74 @@
             </div>
         </div>
     </div>
+
     <div class="about-xplor-area section">
-        <div class="container ">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="about-xplor-title">
-                        <h2>SEJARAH SOTO BANGKONG</h2>
+                        <h2>{{ $aboutSetting->history_title ?? 'SEJARAH SOTO BANGKONG' }}</h2>
                     </div>
                 </div>
+                
                 <div class="col-md-6">
                     <div class="about-xplor-content">
-                        <p>Berawal dari sebuah pikulan sederhana di perempatan Jalan Bangkong, Semarang pada tahun 1950, <strong>Soto Bangkong</strong> memulai perjalanan panjangnya. Nama "Bangkong" sendiri diambil dari nama jalan tempat kami pertama kali merintis usaha, yang kini dikenal sebagai Jalan Brigjen Katamso.</p>
-                        
-                        <p>Kelezatan kaldu bening yang kaya rempah, dipadukan dengan ayam kampung pilihan, bihun, kecambah, dan taburan bawang putih goreng, membuat Soto Bangkong perlahan tapi pasti menjadi primadona kuliner di hati masyarakat. Kesederhanaan dan keaslian rasa inilah yang terus kami jaga dari generasi ke generasi.</p>
-
-                        <p>Kini, Soto Bangkong telah hadir di Jakarta untuk mengobati kerinduan para perantau dan pecinta kuliner nusantara akan cita rasa soto Semarang yang otentik. Kami bangga dapat terus menyajikan warisan kuliner legendaris ini dengan kualitas dan pelayanan terbaik untuk Anda.</p>
+                        @if($aboutSetting && $aboutSetting->history_content)
+                            {!! $aboutSetting->history_content !!}
+                        @else
+                            <p>Berawal dari sebuah pikulan sederhana di perempatan Jalan Bangkong, Semarang pada tahun 1950, <strong>Soto Bangkong</strong> memulai perjalanan panjangnya. Nama "Bangkong" sendiri diambil dari nama jalan tempat kami pertama kali merintis usaha.</p>
+                            <p>Kelezatan kaldu bening yang kaya rempah, dipadukan dengan ayam kampung pilihan, bihun, kecambah, dan taburan bawang putih goreng, membuat Soto Bangkong perlahan tapi pasti menjadi primadona kuliner.</p>
+                        @endif
                     </div>
                 </div>
+                
                 <div class="col-md-6 hidden-md hidden-lg">
                     <div class="about-xplor-imgg">
-                        <img src="{{ asset('assets/images/about/1.jpg') }}" alt="Sejarah Soto Bangkong">
+                        <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Sejarah Soto">
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="about-xplor-bg">
-            <img src="{{ asset('assets/images/about/1.jpg') }}" alt="Soto Bangkong Dulu">
+            <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Soto Bangkong Dulu">
         </div>
     </div>
+
     <div class="xplor-theme section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="xplor-theme-title">
-                        <h2>FILOSOFI RASA</h2>
+                        <h2>{{ $aboutSetting->philosophy_title ?? 'FILOSOFI RASA' }}</h2>
                     </div>
                 </div>
+                
                 <div class="col-md-6 hidden-md hidden-lg">
                     <div class="xplor-theme-img">
-                        <img src="{{ asset('assets/images/about/2.jpg') }}" alt="Filosofi Resep">
+                        <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/2.jpg') }}" alt="Filosofi Resep">
                     </div>
                 </div>
+                
                 <div class="col-md-6 col-md-offset-6">
                     <div class="xplor-theme-content">
-                        <p> <span>Bumbu Rahasia</span> kami bukanlah sekadar campuran rempah-rempah biasa. Ia adalah dedikasi, konsistensi, dan cinta pada budaya kuliner Indonesia yang kami warisi sejak dulu.</p>
-                        
-                        <p>Berbeda dengan soto dari daerah lain, Soto Bangkong memiliki ciri khas kuah kaldu yang bening sedikit kecoklatan, hasil dari penggunaan kecap manis produksi rumahan yang kami bawa langsung dari Semarang. Perpaduan manis, gurih, dan segar dalam satu suapan adalah janji yang selalu kami tepati di setiap porsinya.</p>
-
-                        <p>Kami percaya bahwa makanan enak tidak hanya memanjakan lidah, tapi juga mampu membangkitkan kenangan. Itulah mengapa kami selalu mempertahankan metode memasak tradisional untuk menjaga keaslian rasa, agar setiap suapan Soto Bangkong selalu terasa seperti pulang ke rumah.</p>
+                        @if($aboutSetting && $aboutSetting->philosophy_content)
+                            {!! $aboutSetting->philosophy_content !!}
+                        @else
+                            <p><span>Bumbu Rahasia</span> kami bukanlah sekadar campuran rempah-rempah biasa. Ia adalah dedikasi, konsistensi, dan cinta pada budaya kuliner Indonesia yang kami warisi sejak dulu.</p>
+                            <p>Berbeda dengan soto dari daerah lain, Soto Bangkong memiliki ciri khas kuah kaldu yang bening sedikit kecoklatan, hasil dari penggunaan kecap manis produksi rumahan yang kami bawa langsung dari Semarang.</p>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="xplor-theme-left-bg">
-            <img src="{{ asset('assets/images/about/1.jpg') }}" alt="Bumbu Soto">
+            <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/1.jpg') }}" alt="Bumbu Soto">
         </div>
     </div>
-    <div class="team-area section ">
+
+    <div class="team-area section" style="margin-top:5rem;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -78,77 +89,49 @@
                         <h2>DI BALIK DAPUR KAMI</h2>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="single-team">
-                        <div class="member-img">
-                            <img src="{{ asset('assets/images/team/chef1.jpg') }}" alt="Head Chef">
-                        </div>
-                        <div class="member-info">
-                            <div class="member-name">
-                                <h3><a href="#">Pak Yanto</a></h3>
-                                <span>Kepala Dapur</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
-                <div class="col-md-8 col-sm-8">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="single-team">
-                                <div class="member-img">
-                                    <img src="{{ asset('assets/images/team/chef2.jpg') }}" alt="Cook">
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">
-                                        <h3><a href="#">Mas Ari</a></h3>
-                                        <span>Spesialis Kaldu</span>
-                                    </div>
-                                </div>
+                @if($headChef)
+                    <div class="col-md-4 col-sm-4">
+                        <div class="single-team">
+                            <div class="member-img">
+                                <img src="{{ asset('storage/' . $headChef->image) }}" alt="{{ $headChef->name }}" style="width: 100%; height: 400px; object-fit: cover;">
                             </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="single-team">
-                                <div class="member-img">
-                                    <img src="{{ asset('assets/images/team/chef3.jpg') }}" alt="Cook">
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">
-                                        <h3><a href="#">Mbak Ningsih</a></h3>
-                                        <span>Peracik Bumbu</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="single-team">
-                                <div class="member-img">
-                                    <img src="{{ asset('assets/images/team/chef4.jpg') }}" alt="Service">
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">
-                                        <h3><a href="#">Mas Dono</a></h3>
-                                        <span>Manager Outlet</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="single-team">
-                                <div class="member-img">
-                                    <img src="{{ asset('assets/images/team/chef5.jpg') }}" alt="Service">
-                                </div>
-                                <div class="member-info">
-                                    <div class="member-name">
-                                        <h3><a href="#">Staff</a></h3>
-                                        <span>Kepala Pelayanan</span>
-                                    </div>
+                            <div class="member-info">
+                                <div class="member-name">
+                                    <h3><a href="#">{{ $headChef->name }}</a></h3>
+                                    <span>{{ $headChef->position }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="col-md-8 col-sm-8">
+                        <div class="row">
+                            @foreach($otherMembers as $member)
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="single-team">
+                                        <div class="member-img">
+                                            <img src="{{ asset('storage/' . $member->image) }}" alt="{{ $member->name }}" style="width: 100%; height: 280px; object-fit: cover;">
+                                        </div>
+                                        <div class="member-info">
+                                            <div class="member-name">
+                                                <h3><a href="#">{{ $member->name }}</a></h3>
+                                                <span>{{ $member->position }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="col-12 text-center">
+                        <p>Belum ada data anggota tim.</p>
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
-    @endsection
+    
+@endsection
