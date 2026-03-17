@@ -8,9 +8,9 @@
         <meta name="author" content="RadonTheme">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Title -->
-        <title>Xplor - Creative Agency Portfolio HTML Template</title>
+        <title>SotoBangkong</title>
         <!-- Favicon and Touch Icons -->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">

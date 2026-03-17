@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo Soto Bangkong">
+                    <img src="{{ asset('assets/images/logo_header.png') }}" alt="Logo Soto Bangkong" style="height: 100%">
                 </a>
             </div>
             

@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin1234'), // Password admin Anda
         ]);
         $this->call([
-            SettingSeeder::class
+            SettingSeeder::class,
+            CateringSeeder::class,
+            GallerySeeder::class
         ]);
     }
 }

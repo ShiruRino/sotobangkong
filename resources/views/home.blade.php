@@ -98,6 +98,24 @@
     @endforelse
     </div>
 </div>
+<div class="video-area section" style="padding-top: 60px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                
+                <div class="video-wrapper" style="display: inline-block; width: 216px; height: 384px; box-shadow: 0px 10px 30px rgba(0,0,0,0.15); border-radius: 15px; overflow: hidden; border: 5px solid #fff; background-color: #000;">
+                    
+                    <video width="216" height="384" controls autoplay muted loop style="object-fit: cover; width: 100%; height: 100%;">
+                        <source src="{{ asset('assets/images_web/video/vid.MP4') }}" type="video/mp4">
+                        Maaf, browser Anda tidak mendukung pemutaran video HTML5.
+                    </video>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 <div class="service-area">
     <div class="service-title-area">
         <div class="row">
@@ -210,7 +228,7 @@
                         @if(isset($chooseUsSetting->image) && $chooseUsSetting->image)
                             <img class="img-responsive" src="{{ asset('storage/' . $chooseUsSetting->image) }}" alt="Choose Us">
                         @else
-                            <img class="img-responsive" src="{{ asset('assets/images/chooseus/soto-cooking.jpg') }}" alt="Memasak Soto">
+                            <img class="img-responsive" src="{{ asset('assets/images_web/galeri/2.jpeg') }}" alt="Memasak Soto">
                         @endif
                     </a>
                 </div>
@@ -375,7 +393,7 @@
                         @if(isset($chooseUsSetting->image) && $chooseUsSetting->image)
                             <img class="img-responsive" src="{{ asset('storage/' . $chooseUsSetting->image) }}" alt="Choose Us">
                         @else
-                            <img class="img-responsive" src="{{ asset('assets/images/chooseus/soto-cooking.jpg') }}" alt="Memasak Soto">
+                            <img class="img-responsive" src="{{ asset('assets/images_web/galeri/2.jpeg') }}" alt="Memasak Soto">
                         @endif
                      </a>
                 </div>
@@ -407,7 +425,7 @@
         <div class="testimonial-content">
             <p>"Belum ada ulasan saat ini. Jadilah yang pertama memberikan review!"</p>
         </div>
-        <div class="member-name" style="display: flex; align-items: center; margin-top: 20px;">
+        {{-- <div class="member-name" style="display: flex; align-items: center; margin-top: 20px;">
             <div class="member-avatar" style="margin-right: 15px;">
                 <img src="{{ asset('assets/images/default-avatar.png') }}" alt="Admin" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 2px solid #ffcc00;">
             </div>
@@ -415,7 +433,7 @@
                 <h3 style="margin: 0;"><a href="#">Admin</a></h3> 
                 <span style="display: block; margin-top: 5px;">Sistem</span>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endforelse
                     

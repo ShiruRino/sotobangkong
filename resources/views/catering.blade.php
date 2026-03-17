@@ -29,7 +29,7 @@
                                         <div class="single-portfolio">
                                             <div class="poftfolio-info">
                                                 <div class="poftfolio-img">
-                                                    <img src="{{ asset('storage/' . $catering->image) }}" alt="{{ $catering->title }}" style="width: 100%; height: auto; object-fit: cover;">
+                                                    <img src="{{ Str::startsWith($catering->image, 'assets/') ? asset($catering->image) : asset('storage/' . $catering->image) }}" alt="{{ $catering->title }}" style="width: 100%; height: auto; object-fit: cover;">
                                                 </div>
                                             </div>
                                             <div class="portfolio-content">
@@ -38,7 +38,7 @@
                                                         <h4>{{ $catering->title }}</h4>
                                                         <span>{{ $catering->subtitle }}</span>
                                                         <div class="portfolio-btn">
-                                                            <a href="{{ asset('storage/' . $catering->image) }}" data-lightbox="example-set" data-title="{{ $catering->title }}">Full View</a>
+                                                            <a href="{{ Str::startsWith($catering->image, 'assets/') ? asset($catering->image) : asset('storage/' . $catering->image) }}" data-lightbox="example-set" data-title="{{ $catering->title }}">Full View</a>
                                                         </div>
                                                     </div>
                                                 </div>
