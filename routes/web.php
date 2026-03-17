@@ -2,20 +2,15 @@
 
 use App\Http\Controllers\Admin\AboutSettingController;
 use App\Http\Controllers\Admin\CateringGalleryController;
-use App\Http\Controllers\Admin\ChooseUsItemController;
 use App\Http\Controllers\Admin\ChooseUsSettingController;
 use App\Http\Controllers\Admin\ContactSettingController;
-use App\Http\Controllers\Admin\FunFactController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\OutletController;
-use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\AuthController;
-use App\Models\CateringGallery;
 use App\Models\HomeSlider;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
@@ -90,13 +85,13 @@ Route::get('/gallery', function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/admin/login', [AuthController::class, 'login']);
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('auth')->group(function(){
     Route::get('dashboard', function (){
         // Hitung statistik untuk ditampilkan di dashboard
         $unreadMessages = \App\Models\Message::where('is_read', false)->count();
