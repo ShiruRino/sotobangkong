@@ -37,14 +37,14 @@
                 
                 <div class="col-md-6 hidden-md hidden-lg">
                     <div class="about-xplor-imgg">
-                        <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Sejarah Soto">
+                        <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Sejarah Soto" style="object-fit: scale-down;">
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="about-xplor-bg">
-            <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Soto Bangkong Dulu">
+            <img src="{{ isset($aboutSetting->history_image) && $aboutSetting->history_image ? asset('storage/' . $aboutSetting->history_image) : asset('assets/images/about/1.jpg') }}" alt="Soto Bangkong Dulu" style="object-fit: scale-down">
         </div>
     </div>
 
@@ -59,7 +59,7 @@
                 
                 <div class="col-md-6 hidden-md hidden-lg">
                     <div class="xplor-theme-img">
-                        <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/2.jpg') }}" alt="Filosofi Resep">
+                        <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/2.jpg') }}" alt="Filosofi Resep" style="object-fit: scale-down">
                     </div>
                 </div>
                 
@@ -77,7 +77,7 @@
         </div>
         
         <div class="xplor-theme-left-bg">
-            <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/1.jpg') }}" alt="Bumbu Soto">
+            <img src="{{ isset($aboutSetting->philosophy_image) && $aboutSetting->philosophy_image ? asset('storage/' . $aboutSetting->philosophy_image) : asset('assets/images/about/2.jpg') }}" alt="Bumbu Soto" style="object-fit: scale-down">
         </div>
     </div>
 

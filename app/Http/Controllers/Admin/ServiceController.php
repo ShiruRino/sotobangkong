@@ -74,6 +74,46 @@ class ServiceController extends Controller
 
         return redirect()->route('services.index')->with('success', 'Layanan berhasil diperbarui.');
     }
+    /**
+     * Memuat data layanan default ke database.
+     */
+    public function loadDefaults()
+    {
+        // Data Default 1: Dine-in
+        \App\Models\Service::create([
+            'icon_class'  => 'fa fa-cutlery',
+            'title'       => 'Makan di Tempat (Dine-in)',
+            'hover_title' => 'Dine-in Nyaman', // Jika Anda memiliki kolom ini di database. Jika tidak, hapus baris ini.
+            'description' => 'Nikmati soto hangat langsung di kedai kami dengan suasana yang nyaman dan bersih untuk keluarga.',
+            'link'        => '#',
+            'sort_order'  => 1,
+            'is_active'   => true,
+        ]);
+
+        // Data Default 2: Catering
+        \App\Models\Service::create([
+            'icon_class'  => 'fa fa-truck',
+            'title'       => 'Layanan Catering',
+            'hover_title' => 'Catering Acara',
+            'description' => 'Siap melayani pesanan partai besar untuk acara pernikahan, syukuran, atau meeting kantor.',
+            'link'        => '#',
+            'sort_order'  => 2,
+            'is_active'   => true,
+        ]);
+
+        // Data Default 3: Delivery
+        \App\Models\Service::create([
+            'icon_class'  => 'fa fa-motorcycle',
+            'title'       => 'Pesan Antar',
+            'hover_title' => 'Delivery Order',
+            'description' => 'Mager keluar rumah? Tenang, kami siap antar pesanan soto hangat langsung ke depan pintu Anda.',
+            'link'        => '#',
+            'sort_order'  => 3,
+            'is_active'   => true,
+        ]);
+
+        return redirect()->route('services.index')->with('success', '3 Layanan default berhasil ditambahkan ke database!');
+    }
 
     /**
      * Remove the specified resource from storage.

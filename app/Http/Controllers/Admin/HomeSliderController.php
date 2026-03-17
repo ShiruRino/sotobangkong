@@ -80,7 +80,6 @@ class HomeSliderController extends Controller
             'button_2_text'     => 'nullable|string|max:255',
             'button_2_link'     => 'nullable|string|max:255',
             'sort_order'        => 'integer',
-            'is_active'         => 'boolean',
             'background_image'  => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'right_image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
@@ -88,16 +87,28 @@ class HomeSliderController extends Controller
         // Fallback for checkboxes if unchecked
         $validated['is_active'] = $request->has('is_active');
 
-        // Handle Background Image Update
-        if ($request->hasFile('background_image')) {
+        // Handle Background Image Update atau Penghapusan ke Default
+        if ($request->has('remove_background_image')) {
+            if ($slider->background_image) {
+                Storage::disk('public')->delete($slider->background_image);
+            }
+            $validated['background_image'] = null; // Set jadi null agar fallback ke gambar default jalan
+        } 
+        elseif ($request->hasFile('background_image')) {
             if ($slider->background_image) {
                 Storage::disk('public')->delete($slider->background_image);
             }
             $validated['background_image'] = $request->file('background_image')->store('sliders', 'public');
         }
 
-        // Handle Right Image Update
-        if ($request->hasFile('right_image')) {
+        // Handle Right Image Update atau Penghapusan ke Default
+        if ($request->has('remove_right_image')) {
+            if ($slider->right_image) {
+                Storage::disk('public')->delete($slider->right_image);
+            }
+            $validated['right_image'] = null;
+        } 
+        elseif ($request->hasFile('right_image')) {
             if ($slider->right_image) {
                 Storage::disk('public')->delete($slider->right_image);
             }
@@ -125,5 +136,39 @@ class HomeSliderController extends Controller
         $slider->delete();
 
         return redirect()->route('sliders.index')->with('success', 'Slider deleted successfully.');
+    }
+    /**
+     * Memuat data slider default ke database.
+     */
+    public function loadDefaults()
+    {
+        // Data Default 1: Soto Bangkong
+        \App\Models\HomeSlider::create([
+            'heading_highlight' => 'SOTOBANGKONG',
+            'heading_main'      => 'JAKARTA',
+            'description'       => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.',
+            'button_1_text'     => 'Tentang Kami',
+            'button_1_link'     => '#',
+            'button_2_text'     => 'Pesan Catering',
+            'button_2_link'     => '#',
+            'sort_order'        => 1,
+            'is_active'         => true,
+            // background_image dan right_image dibiarkan null agar memicu efek fallback di frontend
+        ]);
+
+        // Data Default 2: Digital Studio
+        \App\Models\HomeSlider::create([
+            'heading_highlight' => 'DIGITAL',
+            'heading_main'      => 'STUDIO',
+            'description'       => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.',
+            'button_1_text'     => 'About us',
+            'button_1_link'     => '#',
+            'button_2_text'     => 'Contact us',
+            'button_2_link'     => '#',
+            'sort_order'        => 2,
+            'is_active'         => true,
+        ]);
+
+        return redirect()->route('sliders.index')->with('success', '2 Slider default berhasil ditambahkan ke database!');
     }
 }

@@ -57,26 +57,57 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="background_image">Background Image</label>
-                        @if($slider->background_image)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/' . $slider->background_image) }}" alt="Current BG" class="img-thumbnail" width="150">
-                            </div>
-                        @endif
-                        <input type="file" class="form-control-file @error('background_image') is-invalid @enderror" id="background_image" name="background_image" accept="image/*">
-                        <small class="text-muted">Biarkan kosong jika tidak ingin mengubah gambar.</small>
-                    </div>
+                    <hr>
 
                     <div class="form-group">
-                        <label for="right_image">Gambar Kanan</label>
-                        @if($slider->right_image)
-                            <div class="mb-2">
-                                <img src="{{ asset('storage/' . $slider->right_image) }}" alt="Current Right Image" class="img-thumbnail" width="150">
+                        <label for="background_image">Background Image</label>
+                        
+                        @if($slider->background_image)
+                            <div class="mb-3 p-3 border rounded" style="background-color: #f8f9fa;">
+                                <p class="mb-2"><i class="fas fa-image text-primary"></i> <strong>Gambar Custom Saat Ini:</strong></p>
+                                <img src="{{ asset('storage/' . $slider->background_image) }}" alt="Current BG" class="img-thumbnail mb-2" style="max-height: 150px;">
+                                
+                                <div class="custom-control custom-checkbox mt-2">
+                                    <input type="checkbox" class="custom-control-input" id="remove_background_image" name="remove_background_image" value="1">
+                                    <label class="custom-control-label text-danger" for="remove_background_image">Hapus gambar custom ini dan kembali ke Default</label>
+                                </div>
+                            </div>
+                        @else
+                            <div class="mb-3 p-3 bg-light border rounded">
+                                <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default Aktif:</strong> Saat ini slider menggunakan gambar bawaan.</p>
+                                <img src="{{ asset('assets/images/slider/1.jpg') }}" alt="Default Background" class="img-thumbnail" style="max-height: 150px;">
                             </div>
                         @endif
-                        <input type="file" class="form-control-file @error('right_image') is-invalid @enderror" id="right_image" name="right_image" accept="image/*">
+
+                        <input type="file" class="form-control-file @error('background_image') is-invalid @enderror" id="background_image" name="background_image" accept="image/*">
+                        <small class="text-muted">Upload gambar baru untuk mengganti gambar yang sedang aktif.</small>
                     </div>
+
+                    <div class="form-group mt-4">
+                        <label for="right_image">Gambar Kanan (Mangkuk/Produk)</label>
+                        
+                        @if($slider->right_image)
+                            <div class="mb-3 p-3 border rounded" style="background-color: #f8f9fa;">
+                                <p class="mb-2"><i class="fas fa-image text-primary"></i> <strong>Gambar Custom Saat Ini:</strong></p>
+                                <img src="{{ asset('storage/' . $slider->right_image) }}" alt="Current Right Image" class="img-thumbnail mb-2" style="max-height: 150px;">
+                                
+                                <div class="custom-control custom-checkbox mt-2">
+                                    <input type="checkbox" class="custom-control-input" id="remove_right_image" name="remove_right_image" value="1">
+                                    <label class="custom-control-label text-danger" for="remove_right_image">Hapus gambar custom ini dan kembali ke Default</label>
+                                </div>
+                            </div>
+                        @else
+                            <div class="mb-3 p-3 bg-light border rounded">
+                                <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default Aktif:</strong> Saat ini slider menggunakan gambar bawaan.</p>
+                                <img src="{{ asset('assets/images/slider/2.png') }}" alt="Default Mangkuk" class="img-thumbnail" style="max-height: 150px; background-color: #ccc;">
+                            </div>
+                        @endif
+
+                        <input type="file" class="form-control-file @error('right_image') is-invalid @enderror" id="right_image" name="right_image" accept="image/*">
+                        <small class="text-muted">Upload gambar baru untuk mengganti gambar yang sedang aktif.</small>
+                    </div>
+
+                    <hr>
 
                     <div class="row">
                         <div class="col-md-6 form-group">

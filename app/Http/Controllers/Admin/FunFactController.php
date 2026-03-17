@@ -53,6 +53,49 @@ class FunFactController extends Controller
 
         return redirect()->route('fun-facts.index')->with('success', 'Fun Fact berhasil diperbarui.');
     }
+    /**
+     * Memuat data fun fact default ke database.
+     */
+    public function loadDefaults()
+    {
+        // Data Default 1
+        \App\Models\FunFact::create([
+            'number'     => '15',
+            'title'      => 'Tahun',
+            'subtitle'   => 'Berdiri',
+            'sort_order' => 1,
+            'is_active'  => true,
+        ]);
+
+        // Data Default 2
+        \App\Models\FunFact::create([
+            'number'     => '1520',
+            'title'      => 'Porsi',
+            'subtitle'   => 'Terjual / Hari',
+            'sort_order' => 2,
+            'is_active'  => true,
+        ]);
+
+        // Data Default 3
+        \App\Models\FunFact::create([
+            'number'     => '3',
+            'title'      => 'Cabang',
+            'subtitle'   => 'Restoran',
+            'sort_order' => 3,
+            'is_active'  => true,
+        ]);
+
+        // Data Default 4
+        \App\Models\FunFact::create([
+            'number'     => '99',
+            'title'      => '% Pelanggan',
+            'subtitle'   => 'Puas',
+            'sort_order' => 4,
+            'is_active'  => true,
+        ]);
+
+        return redirect()->route('fun-facts.index')->with('success', '4 Data Fun Fact default berhasil ditambahkan!');
+    }
 
     public function destroy(FunFact $funFact)
     {

@@ -56,16 +56,28 @@
                         </div>
                     </div>
 
+                    <hr>
+
                     <div class="form-group">
                         <label for="background_image">Background Image</label>
+                        <div class="mb-3 p-3 bg-light border rounded">
+                            <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default:</strong> Ini adalah gambar bawaan yang akan digunakan jika Anda tidak mengunggah gambar baru.</p>
+                            <img src="{{ asset('assets/images/slider/1.jpg') }}" alt="Default Background" class="img-thumbnail" style="max-height: 150px;">
+                        </div>
                         <input type="file" class="form-control-file @error('background_image') is-invalid @enderror" id="background_image" name="background_image" accept="image/*">
                         @error('background_image') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-4">
                         <label for="right_image">Gambar Kanan (Mangkuk/Produk)</label>
+                        <div class="mb-3 p-3 bg-light border rounded">
+                            <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default:</strong> Ini adalah gambar bawaan yang akan digunakan jika Anda tidak mengunggah gambar baru.</p>
+                            <img src="{{ asset('assets/images/slider/2.png') }}" alt="Default Mangkuk" class="img-thumbnail" style="max-height: 150px; background-color: #ccc;">
+                        </div>
                         <input type="file" class="form-control-file @error('right_image') is-invalid @enderror" id="right_image" name="right_image" accept="image/*">
                     </div>
+
+                    <hr>
 
                     <div class="row">
                         <div class="col-md-6 form-group">

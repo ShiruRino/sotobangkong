@@ -19,7 +19,14 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Daftar Slider</h3>
-                <div class="card-tools">
+                <div class="card-tools d-flex">
+                    <form action="{{ route('sliders.load-defaults') }}" method="POST" class="mr-2" onsubmit="return confirm('Muat data default? Ini akan menambahkan 2 slider bawaan ke database Anda.');">
+                        @csrf
+                        <button type="submit" class="btn btn-info btn-sm">
+                            <i class="fas fa-sync-alt"></i> Load Default Slider
+                        </button>
+                    </form>
+                    
                     <a href="{{ route('sliders.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> Tambah Slider
                     </a>
@@ -44,7 +51,7 @@
                                     @if($slider->background_image)
                                         <img src="{{ asset('storage/' . $slider->background_image) }}" alt="BG" width="80" class="img-thumbnail">
                                     @else
-                                        <span class="text-muted">Tidak ada</span>
+                                        <img src="{{ asset('assets/images/slider/1.jpg') }}" alt="BG Default" width="80" class="img-thumbnail">
                                     @endif
                                 </td>
                                 <td>{{ $slider->heading_highlight }}</td>
@@ -70,7 +77,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Belum ada data slider.</td>
+                                <td colspan="5" class="text-center">Belum ada data slider. Silakan muat default atau tambah baru.</td>
                             </tr>
                         @endforelse
                     </tbody>

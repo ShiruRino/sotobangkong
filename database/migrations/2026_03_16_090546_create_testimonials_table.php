@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('name'); // "Mas Budi"
             $table->string('role')->nullable(); // "Pelanggan Setia"
             $table->text('content'); // Isi review
+            $table->string('avatar')->nullable();
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

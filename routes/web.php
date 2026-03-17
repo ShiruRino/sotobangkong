@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSettingController;
+use App\Http\Controllers\Admin\CateringGalleryController;
 use App\Http\Controllers\Admin\ChooseUsItemController;
 use App\Http\Controllers\Admin\ChooseUsSettingController;
 use App\Http\Controllers\Admin\ContactSettingController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\OutletController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\AuthController;
 use App\Models\CateringGallery;
 use App\Models\HomeSlider;
 use App\Models\Service;
@@ -87,6 +89,13 @@ Route::get('/gallery', function () {
     return view('gallery', compact('galleries', 'galleryColumns'));
 });
 
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
 Route::prefix('admin')->group(function(){
     Route::get('dashboard', function (){
         // Hitung statistik untuk ditampilkan di dashboard
@@ -106,9 +115,13 @@ Route::prefix('admin')->group(function(){
     Route::get('about-setting', [AboutSettingController::class, 'index'])->name('about-settings.index');
     Route::post('about-setting', [AboutSettingController::class, 'update'])->name('about-settings.update');
 
-    Route::resource('caterings', CateringGallery::class);
+    Route::resource('caterings', CateringGalleryController::class);
 
-    Route::resource('choose-us-items', ChooseUsItemController::class);
+    // ROUTE BARU UNTUK LOAD DEFAULT CHOOSE US ITEMS
+    Route::post('choose-us-items/load-defaults', [App\Http\Controllers\Admin\ChooseUsItemController::class, 'loadDefaults'])->name('choose-us-items.load-defaults');
+    
+    // Route resource yang sudah ada
+    Route::resource('choose-us-items', App\Http\Controllers\Admin\ChooseUsItemController::class);
 
     Route::get('choose-us-setting', [ChooseUsSettingController::class, 'index'])->name('choose-us-setting.index');
     Route::post('choose-us-setting', [ChooseUsSettingController::class, 'update'])->name('choose-us-setting.update');
@@ -116,11 +129,19 @@ Route::prefix('admin')->group(function(){
     Route::get('contact-setting', [ContactSettingController::class, 'index'])->name('contact-setting.index');
     Route::post('contact-setting', [ContactSettingController::class, 'update'])->name('contact-setting.update');
     
-    Route::resource('fun-facts', FunFactController::class);
+    // ROUTE BARU UNTUK LOAD DEFAULT FUN FACTS
+    Route::post('fun-facts/load-defaults', [App\Http\Controllers\Admin\FunFactController::class, 'loadDefaults'])->name('fun-facts.load-defaults');
+    
+    // Route resource yang sudah ada
+    Route::resource('fun-facts', App\Http\Controllers\Admin\FunFactController::class);
 
     Route::resource('galleries', GalleryController::class);
 
-    Route::resource('sliders', HomeSliderController::class);
+    // ROUTE BARU UNTUK LOAD DEFAULT
+    Route::post('sliders/load-defaults', [App\Http\Controllers\Admin\HomeSliderController::class, 'loadDefaults'])->name('sliders.load-defaults');
+    
+    // Route resource yang sudah ada sebelumnya
+    Route::resource('sliders', App\Http\Controllers\Admin\HomeSliderController::class);
 
     Route::resource('menus', MenuController::class);
 
@@ -128,7 +149,11 @@ Route::prefix('admin')->group(function(){
 
     Route::resource('outlets', OutletController::class);
 
-    Route::resource('services', ServiceController::class);
+    // ROUTE BARU UNTUK LOAD DEFAULT SERVICES
+    Route::post('services/load-defaults', [App\Http\Controllers\Admin\ServiceController::class, 'loadDefaults'])->name('services.load-defaults');
+    
+    // Route resource yang sudah ada
+    Route::resource('services', App\Http\Controllers\Admin\ServiceController::class);
 
     Route::resource('team-members', TeamMemberController::class);
 

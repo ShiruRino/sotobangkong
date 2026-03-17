@@ -371,7 +371,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="chooseus-img">
-                     <a href="#"><img class="img-responsive" src="{{ asset('assets/images/chooseus/testi-image.png') }}" alt="Testimonial"></a>
+                     <a href="#">
+                        @if(isset($chooseUsSetting->image) && $chooseUsSetting->image)
+                            <img class="img-responsive" src="{{ asset('storage/' . $chooseUsSetting->image) }}" alt="Choose Us">
+                        @else
+                            <img class="img-responsive" src="{{ asset('assets/images/chooseus/soto-cooking.jpg') }}" alt="Memasak Soto">
+                        @endif
+                     </a>
                 </div>
             </div>
             
@@ -379,24 +385,39 @@
                 <div class="owl-carousel slide-testimonial">
                     
                     @forelse($testimonials as $testi)
-                        <div class="single-testimonial">
-                            <div class="testimonial-content">
-                                <p>"{{ $testi->content }}"</p>
-                            </div>
-                            <div class="member-name">
-                                <h3><a href="#">{{ $testi->name }}</a> <span>{{ $testi->role }}</span></h3>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="single-testimonial">
-                            <div class="testimonial-content">
-                                <p>"Belum ada ulasan saat ini. Jadilah yang pertama memberikan review!"</p>
-                            </div>
-                            <div class="member-name">
-                                <h3><a href="#">Admin</a> <span>Sistem</span></h3>
-                            </div>
-                        </div>
-                    @endforelse
+    <div class="single-testimonial">
+        <div class="testimonial-content">
+            <p>"{{ $testi->content }}"</p>
+        </div>
+        
+        <div class="member-name" style="display: flex; align-items: center; margin-top: 20px;">
+            <div class="member-avatar" style="margin-right: 15px;">
+                <img src="{{ $testi->avatar ? asset('storage/' . $testi->avatar) : asset('assets/images/default-avatar.png') }}" 
+                     alt="{{ $testi->name }}" 
+                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 2px solid #ffcc00;">
+            </div>
+            <div>
+                <h3 style="margin: 0;"><a href="#">{{ $testi->name }}</a></h3> 
+                <span style="display: block; margin-top: 5px;">{{ $testi->role }}</span>
+            </div>
+        </div>
+    </div>
+@empty
+    <div class="single-testimonial">
+        <div class="testimonial-content">
+            <p>"Belum ada ulasan saat ini. Jadilah yang pertama memberikan review!"</p>
+        </div>
+        <div class="member-name" style="display: flex; align-items: center; margin-top: 20px;">
+            <div class="member-avatar" style="margin-right: 15px;">
+                <img src="{{ asset('assets/images/default-avatar.png') }}" alt="Admin" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 2px solid #ffcc00;">
+            </div>
+            <div>
+                <h3 style="margin: 0;"><a href="#">Admin</a></h3> 
+                <span style="display: block; margin-top: 5px;">Sistem</span>
+            </div>
+        </div>
+    </div>
+@endforelse
                     
                 </div>
             </div>

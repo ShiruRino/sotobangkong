@@ -39,12 +39,26 @@
 
                             <div class="form-group">
                                 <label for="history_image">Gambar Sejarah (Samping Kanan)</label>
+                                
                                 @if($about->history_image)
-                                    <div class="mb-2">
-                                        <img src="{{ asset('storage/' . $about->history_image) }}" alt="History Image" class="img-thumbnail" width="150">
+                                    <div class="mb-3 p-3 border rounded" style="background-color: #f8f9fa;">
+                                        <p class="mb-2"><i class="fas fa-image text-primary"></i> <strong>Gambar Custom Saat Ini:</strong></p>
+                                        <img src="{{ asset('storage/' . $about->history_image) }}" alt="History Image" class="img-thumbnail mb-2" style="max-height: 150px;">
+                                        
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="checkbox" class="custom-control-input" id="remove_history_image" name="remove_history_image" value="1">
+                                            <label class="custom-control-label text-danger" for="remove_history_image">Hapus gambar ini dan kembali ke Default</label>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="mb-3 p-3 bg-light border rounded">
+                                        <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default Aktif:</strong> Saat ini menggunakan gambar bawaan.</p>
+                                        <img src="{{ asset('assets/images/about/1.jpg') }}" alt="Default History" class="img-thumbnail" style="max-height: 150px;">
                                     </div>
                                 @endif
+
                                 <input type="file" class="form-control-file" id="history_image" name="history_image" accept="image/*">
+                                <small class="text-muted">Upload gambar baru jika ingin mengganti gambar yang sedang aktif.</small>
                             </div>
                         </div>
                     </div>
@@ -68,12 +82,26 @@
 
                             <div class="form-group">
                                 <label for="philosophy_image">Gambar Filosofi (Samping Kiri)</label>
+                                
                                 @if($about->philosophy_image)
-                                    <div class="mb-2">
-                                        <img src="{{ asset('storage/' . $about->philosophy_image) }}" alt="Philosophy Image" class="img-thumbnail" width="150">
+                                    <div class="mb-3 p-3 border rounded" style="background-color: #f8f9fa;">
+                                        <p class="mb-2"><i class="fas fa-image text-warning"></i> <strong>Gambar Custom Saat Ini:</strong></p>
+                                        <img src="{{ asset('storage/' . $about->philosophy_image) }}" alt="Philosophy Image" class="img-thumbnail mb-2" style="max-height: 150px;">
+                                        
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="checkbox" class="custom-control-input" id="remove_philosophy_image" name="remove_philosophy_image" value="1">
+                                            <label class="custom-control-label text-danger" for="remove_philosophy_image">Hapus gambar ini dan kembali ke Default</label>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="mb-3 p-3 bg-light border rounded">
+                                        <p class="mb-2 text-muted"><i class="fas fa-info-circle"></i> <strong>Gambar Default Aktif:</strong> Saat ini menggunakan gambar bawaan.</p>
+                                        <img src="{{ asset('assets/images/about/2.jpg') }}" alt="Default Philosophy" class="img-thumbnail" style="max-height: 150px;">
                                     </div>
                                 @endif
+
                                 <input type="file" class="form-control-file" id="philosophy_image" name="philosophy_image" accept="image/*">
+                                <small class="text-muted">Upload gambar baru jika ingin mengganti gambar yang sedang aktif.</small>
                             </div>
                         </div>
                     </div>

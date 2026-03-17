@@ -19,7 +19,14 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Daftar Fun Fact</h3>
-                <div class="card-tools">
+                <div class="card-tools d-flex">
+                    <form action="{{ route('fun-facts.load-defaults') }}" method="POST" class="mr-2" onsubmit="return confirm('Muat data default? Ini akan menambahkan 4 data fun fact bawaan ke database Anda.');">
+                        @csrf
+                        <button type="submit" class="btn btn-info btn-sm">
+                            <i class="fas fa-sync-alt"></i> Load Default Fun Fact
+                        </button>
+                    </form>
+
                     <a href="{{ route('fun-facts.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> Tambah Data
                     </a>
@@ -66,7 +73,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Belum ada data Fun Fact.</td>
+                                <td colspan="6" class="text-center">Belum ada data Fun Fact. Silakan muat default atau tambah baru.</td>
                             </tr>
                         @endforelse
                     </tbody>

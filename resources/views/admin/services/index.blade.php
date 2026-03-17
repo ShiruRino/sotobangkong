@@ -19,7 +19,14 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Daftar Layanan</h3>
-                <div class="card-tools">
+                <div class="card-tools d-flex">
+                    <form action="{{ route('services.load-defaults') }}" method="POST" class="mr-2" onsubmit="return confirm('Muat data default? Ini akan menambahkan 3 layanan bawaan ke database Anda.');">
+                        @csrf
+                        <button type="submit" class="btn btn-info btn-sm">
+                            <i class="fas fa-sync-alt"></i> Load Default Services
+                        </button>
+                    </form>
+                    
                     <a href="{{ route('services.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> Tambah Layanan
                     </a>
@@ -67,7 +74,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Belum ada data layanan.</td>
+                                <td colspan="5" class="text-center">Belum ada data layanan. Silakan muat default atau tambah baru.</td>
                             </tr>
                         @endforelse
                     </tbody>

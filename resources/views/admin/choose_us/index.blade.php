@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Daftar Alasan')
+@section('title', 'Kenapa Memilih Kami')
 
 @section('content_header')
-    <h1>Kelola Daftar Alasan</h1>
+    <h1>Daftar Keunggulan (Choose Us)</h1>
 @stop
 
 @section('content')
@@ -18,11 +18,15 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Daftar Item</h3>
-                <div class="card-tools">
-                    <a href="{{ url('admin/choose-us-setting') }}" class="btn btn-default btn-sm mr-2">
-                        <i class="fas fa-cog"></i> Pengaturan Utama
-                    </a>
+                <h3 class="card-title">Daftar Poin Keunggulan</h3>
+                <div class="card-tools d-flex">
+                    <form action="{{ route('choose-us-items.load-defaults') }}" method="POST" class="mr-2" onsubmit="return confirm('Muat data default? Ini akan menambahkan 3 poin keunggulan bawaan ke database Anda.');">
+                        @csrf
+                        <button type="submit" class="btn btn-info btn-sm">
+                            <i class="fas fa-sync-alt"></i> Load Default Items
+                        </button>
+                    </form>
+                    
                     <a href="{{ route('choose-us-items.create') }}" class="btn btn-primary btn-sm">
                         <i class="fas fa-plus"></i> Tambah Item
                     </a>
@@ -34,16 +38,18 @@
                         <tr>
                             <th>Urutan</th>
                             <th>Icon</th>
-                            <th>Judul Alasan</th>
+                            <th>Judul</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($items as $item)
+                        @forelse($chooseUsItems as $item)
                             <tr>
                                 <td>{{ $item->sort_order }}</td>
-                                <td><i class="{{ $item->icon_class }} fa-lg"></i></td>
+                                <td>
+                                    <i class="{{ $item->icon_class }} fa-lg"></i>
+                                </td>
                                 <td>{{ $item->title }}</td>
                                 <td>
                                     @if($item->is_active)
@@ -53,17 +59,21 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('choose-us-items.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    <a href="{{ route('choose-us-items.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
                                     <form action="{{ route('choose-us-items.destroy', $item->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus item ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center">Belum ada data alasan.</td>
+                                <td colspan="5" class="text-center">Belum ada data. Silakan muat default atau tambah baru.</td>
                             </tr>
                         @endforelse
                     </tbody>
